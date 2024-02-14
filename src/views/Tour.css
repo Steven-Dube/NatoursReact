@@ -1,0 +1,29 @@
+.tourAttributeContainer {
+    display: flex;
+    row-gap: 10px;
+}
+
+.boldText {
+    font-weight: bold;
+}
+
+.tourContainer {
+    background-color: mediumseagreen;
+    max-width: 250px;
+    padding: 25px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+button {
+    background-color: white;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+}
+
+button:hover {
+    cursor: pointer;
+}

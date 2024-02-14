@@ -1,0 +1,55 @@
+.loginBackground {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 100vh;
+}
+
+.formContainer {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.inputContainer {
+    padding: 5px;
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+
+input {
+    height: 25px;
+    width: 250px;
+    outline: none;
+}
+
+input[type=button] {
+    border: none;
+}
+
+input[type=button]:hover {
+    cursor: pointer;
+}
+
+.inputButton {
+    width: 250px;
+    padding: 5px;
+    font-size: 20px;
+    height: 40px;
+    background-color: mediumseagreen;
+    border-radius: 10px;
+    color: white;
+}
+
+.errorMessage {
+    color: red;
+    font-size: 12px;
+}
