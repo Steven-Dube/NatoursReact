@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { setUserSelectedTours } from "../utils/LocalStorageUtil";
 import './Login.css';
@@ -20,11 +20,6 @@ const Login = () => {
 
     if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
       setEmailError('Please enter a valid email');
-      return;
-    }
-
-    if (password.length < 8) {
-      setPasswordError('The password must be 8 characters or longer');
       return;
     }
 
@@ -50,7 +45,7 @@ const Login = () => {
       } else {
         setUnexpectedError(true);
       }
-    }).catch(err => {
+    }).catch(_ => {
       setUnexpectedError(true);
     });
   }
