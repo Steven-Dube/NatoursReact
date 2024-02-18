@@ -67,6 +67,8 @@ const Signup = () => {
         res.json().then(userData => {
           setUserSelectedTours(userData.user.id, userData.user.name);
           localStorage.setItem("token", userData.user.token);
+          const now = new Date();
+          document.cookie = `currentUserId=${userData.user.id}; path=/; expires=${now.setDate(now.getDate() + 1)}`;
           navigate("/tours", { replace: true });
         });
       } else if(res.status === 409) {
@@ -74,7 +76,7 @@ const Signup = () => {
       } else {
         setUnexpectedError(true);
       }
-    }).catch(err => {
+    }).catch(_ => {
       setUnexpectedError(true);
     });
   }

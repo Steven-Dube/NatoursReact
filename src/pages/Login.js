@@ -38,6 +38,8 @@ const Login = () => {
         res.json().then(userData => {
           setUserSelectedTours(userData.user.id, userData.user.name);
           localStorage.setItem("token", userData.user.token);
+          const now = new Date();
+          document.cookie = `currentUserId=${userData.user.id}; path=/; expires=${now.setDate(now.getDate() + 1)}`;
           navigate('/tours', { replace: true });
         });
       } else if(res.status === 401) {

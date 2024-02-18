@@ -1,5 +1,4 @@
 import React from 'react';
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './Navbar.css'
 import cartImage from '../images/cart-large-minimalistic-svgrepo-com.svg'
@@ -8,6 +7,8 @@ const Navbar = () => {
   const navigate = useNavigate();
   const logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("currentUser");
+    document.cookie = '';
     navigate('/login', { replace: true });
   }
 
