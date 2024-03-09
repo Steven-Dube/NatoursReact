@@ -3,6 +3,7 @@ import Login from './pages/Login'
 import Tours from "./pages/Tours";
 import NotFound from "./pages/NotFound";
 import Signup from "./pages/Signup";
+import About from "./pages/About"
 
 export function App() {
   return (
@@ -15,6 +16,7 @@ export function App() {
         <Route path="*" element={<NotFound />} />
         <Route path='/tours' element={<Tours />} />
         <Route path='/signup' element={<Signup />} />
+        <Route path='/about' element={<About />} />
       </Routes>
     </BrowserRouter>
   );

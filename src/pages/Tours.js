@@ -12,12 +12,6 @@ const Tours = () => {
   const [authorized, setAuthorized] = useState(true);
   const navigate = useNavigate();
 
-  const storeTour = (tourId, bought) => {
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    currentUser.boughtTours = parseInt(currentUser.boughtTours, 10) + (bought ? 1 : -1);
-    localStorage.setItem('currentUser', JSON.stringify(currentUser));
-  }
-
   useEffect(() => {
     const token = localStorage.getItem("token");
     fetch(`${process.env.REACT_APP_API}/tours`,{
@@ -33,7 +27,7 @@ const Tours = () => {
             setAuthorized(false);
             setTimeout(() => {
               navigate('/login', { replace: true });
-            }, '2000');
+            }, '4000');
           } else {
             setErrorState(true);
           }
@@ -45,7 +39,7 @@ const Tours = () => {
 
   return (
     <div>
-      <Navbar/>
+        {authorized && <Navbar />}
       <div className='toursBackground'>
         {!authorized &&
           <div>You are not authorized, you will be redirected to the login page soon.</div>
@@ -62,7 +56,7 @@ const Tours = () => {
                     rating: tour.rating,
                     description: tour.description,
                     id: tour._id,
-                  }} storeTour={storeTour}/>
+                  }} />
                 </div>
               ))}
             </div>

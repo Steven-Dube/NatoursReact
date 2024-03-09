@@ -6,26 +6,35 @@
     column-gap: 10px;
 }
 
-.disconnectButton {
+.navbarButton {
     padding: 20px;
     color: white;
     font-size: 20px;
     background-color: black;
+    transition: 0.2s ease-in-out;
 }
 
-.disconnectButton:hover {
+.navbarButton:hover {
     cursor: pointer;
+    color: gray;
+}
+
+.navbarLink {
+    text-decoration: none;
+    color: white;
+    transition: 0.2s ease-in-out;
 }
 
 .rightSide {
     display: flex;
-    column-gap: 20px;
     align-items: center;
+    color: gray;
 }
 
 .cartImage {
     height: 32px;
     width: 32px;
+    margin-right: 20px;
 }
 
 .title {

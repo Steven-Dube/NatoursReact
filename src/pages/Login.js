@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { setUserSelectedTours } from "../utils/LocalStorageUtil";
+import { setStorageCurrentUser } from "../utils/LocalStorageUtil";
 import './Login.css';
 
 const Login = () => {
@@ -36,7 +36,7 @@ const Login = () => {
     }).then(res => {
       if(res.status === 200) {
         res.json().then(userData => {
-          setUserSelectedTours(userData.user.id, userData.user.name);
+          setStorageCurrentUser(userData.user.id, userData.user.name);
           localStorage.setItem("token", userData.user.token);
           const now = new Date();
           document.cookie = `currentUserId=${userData.user.id}; path=/; expires=${now.setDate(now.getDate() + 1)}`;
@@ -87,7 +87,10 @@ const Login = () => {
           {unexpectedError &&
             <p className='errorMessage centeredText'>An expected error occurred</p>
           }
-          <Link className='centeredText' to='/signup'>Not a member? Sign up</Link>
+          <div className='flex-row-space-between'>
+            <Link className='centeredText' to='/signup'>Not a member? Sign up</Link>
+            <Link className='centeredText' to='/about'>About</Link>
+          </div>
         </div>
       </div>
     </div>

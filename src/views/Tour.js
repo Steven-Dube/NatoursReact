@@ -1,11 +1,22 @@
-import React, { useRef, useState } from "react";
+import React, {useEffect, useState} from "react";
 import './Tour.css';
+import {isTourBought, setStorageBoughtTour} from "../utils/LocalStorageUtil";
 
 const Tour = (props) => {
   const [bought, setBought] = useState(false);
+  const tour = props.tour;
+
+  useEffect(() => {
+    if(tour.id === undefined) {
+      return;
+    }
+
+    const isBought = isTourBought(props.tour.id);
+    setBought(isBought);
+  }, [tour]);
   const boughtButtonClicked = () => {
     setBought(!bought);
-    props.storeTour(props.tour.id, !bought);
+    setStorageBoughtTour(props.tour.id);
   }
 
   return (

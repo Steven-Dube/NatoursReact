@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { setUserSelectedTours } from "../utils/LocalStorageUtil";
+import { Link, useNavigate } from "react-router-dom";
+import { setStorageCurrentUser } from "../utils/LocalStorageUtil";
 import {
   validateEmail,
   validatePassword,
@@ -65,7 +65,7 @@ const Signup = () => {
     }).then(res => {
       if(res.status === 200) {
         res.json().then(userData => {
-          setUserSelectedTours(userData.user.id, userData.user.name);
+          setStorageCurrentUser(userData.user.id, userData.user.name);
           localStorage.setItem("token", userData.user.token);
           const now = new Date();
           document.cookie = `currentUserId=${userData.user.id}; path=/; expires=${now.setDate(now.getDate() + 1)}`;
@@ -130,17 +130,20 @@ const Signup = () => {
             </div>
 
             <div className="inputContainer">
-              <input className="inputButton" type="button" value="Sign up" onClick={signup} />
+              <input className="inputButton" type="button" value="Sign up" onClick={signup}/>
             </div>
-
           </form>
           {emailAlreadyTaken &&
-            <p className='errorMessage centeredText'>A user with the entered email is already registered</p>
+              <p className='errorMessage centeredText'>A user with the entered email is already registered</p>
           }
-          {unexpectedError &&
-            <p className='errorMessage centeredText'>An unexpected error occurred</p>
-          }
+          <div className='flex-row-space-between'>
+            <Link className='centeredText' to='/login'>Already have an account? Log in</Link>
+            <Link className='centeredText' to='/about'>About</Link>
+          </div>
         </div>
+        {unexpectedError &&
+            <p className='errorMessage centeredText'>An unexpected error occurred</p>
+        }
       </div>
     </div>
   );
