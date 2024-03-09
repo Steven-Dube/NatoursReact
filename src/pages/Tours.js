@@ -5,6 +5,7 @@ import './Tours.css';
 import './../views/Navbar';
 import Navbar from "../views/Navbar";
 import Tour from "../views/Tour";
+import {isUserAuthenticated} from "../utils/LocalStorageUtil";
 
 const Tours = () => {
   const [tours, setTours] = useState([{}]);
@@ -12,7 +13,18 @@ const Tours = () => {
   const [authorized, setAuthorized] = useState(true);
   const navigate = useNavigate();
 
+  const goToLogin = () => {
+    setTimeout(() => {
+      navigate('/login', { replace: true });
+    }, '4000');
+  }
+
   useEffect(() => {
+    if(!isUserAuthenticated()) {
+      setAuthorized(false);
+      goToLogin();
+    }
+
     const token = localStorage.getItem("token");
     fetch(`${process.env.REACT_APP_API}/tours`,{
       headers: { Authorization: `Bearer ${token}` }
@@ -25,9 +37,7 @@ const Tours = () => {
             });
           } else if(res.status === 401) {
             setAuthorized(false);
-            setTimeout(() => {
-              navigate('/login', { replace: true });
-            }, '4000');
+            goToLogin();
           } else {
             setErrorState(true);
           }

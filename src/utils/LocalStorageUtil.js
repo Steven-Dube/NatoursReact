@@ -26,7 +26,16 @@ export const setStorageBoughtTour = (tourId) => {
 export const isTourBought = (tourId) => {
   let storedCurrentUser = localStorage.getItem("currentUser");
   let currentUser = JSON.parse(storedCurrentUser);
-  let tours = currentUser.tours;
 
+  if(currentUser.tours === undefined) {
+    return false;
+  }
+
+  let tours = currentUser.tours;
   return tours.includes(tourId);
+}
+
+export const isUserAuthenticated = () => {
+  return localStorage.getItem("currentUser") !== null &&
+      localStorage.getItem("token") !== null;
 }
